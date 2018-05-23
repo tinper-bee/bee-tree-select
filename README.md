@@ -26,7 +26,6 @@ npm install --save bee-tree-select
 ```
 组件调用
 ```js
-import Tree from 'bee-tree-select';
 import React, { Component } from 'react';
 import TreeSelect,{TreeNode} from 'bee-tree-select';
 class Demo1 extends Component {
