@@ -8,20 +8,20 @@ import React, { Component } from 'react';
 import TreeSelect,{TreeNode} from '../../src';
 
 const treeData = [{
-  label: 'Node1',
+  title: 'Node1',
   value: '0-0',
   key: '0-0',
   children: [{
-    label: 'Child Node1',
+    title: 'Child Node1',
     value: '0-0-1',
     key: '0-0-1',
   }, {
-    label: 'Child Node2',
+    title: 'Child Node2',
     value: '0-0-2',
     key: '0-0-2',
   }],
 }, {
-  label: 'Node2',
+  title: 'Node2',
   value: '0-1',
   key: '0-1',
 }];
@@ -37,15 +37,15 @@ class Demo3 extends Component {
   render () {
     return (
 
-              <TreeSelect
-                  style={{ width: 300 }}
-                  value={this.state.value}
-                  dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-                  treeData={treeData}
-                    multiple
-                  treeDefaultExpandAll
-                  onChange={this.onChange}
-              />
+        <TreeSelect
+            style={{ width: 300 }}
+            value={this.state.value}
+            dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+            treeData={treeData}
+            multiple
+            treeDefaultExpandAll
+            onChange={this.onChange}
+        />
 
     )
   }

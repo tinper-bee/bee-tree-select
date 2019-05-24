@@ -14,12 +14,12 @@ class Demo4 extends Component {
 
     state = {
       treeData: [
-        { label: 'pNode 01', value: '0-0', key: '0-0' },
-        { label: 'pNode 02', value: '0-1', key: '0-1' },
-        { label: 'pNode 03', value: '0-2', key: '0-2', isLeaf: true },
+        { title: 'pNode 01', value: '0-0', key: '0-0' },
+        { title: 'pNode 02', value: '0-1', key: '0-1' },
+        { title: 'pNode 03', value: '0-2', key: '0-2', isLeaf: true },
       ],
       // value: '0-0',
-      value: { value: '0-0-0-value', label: '0-0-0-label' },
+      value: { value: '0-0-0-value', title: '0-0-0-title' },
     };
   
     onChange = (value) => {

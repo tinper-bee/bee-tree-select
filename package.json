@@ -37,27 +37,38 @@
   "changelog": "bee-tools run changelog"
  },
  "dependencies": {
+  "babel-runtime": "^6.23.0",
+  "bee-icon": "^1.0.11",
+  "bee-select": "^2.0.12",
   "classnames": "^2.2.5",
+  "omit.js": "^1.0.2",
+  "rc-tree-select": "^2.9.1",
   "tinper-bee-core": "latest",
-  "rc-tree-select": "~1.12.0",
-  "babel-runtime": "^6.23.0"
- },
- "devDependencies": {
-  "chai": "^3.5.0",
-  "enzyme": "^2.4.1",
-  "react": "15.3.2",
-  "react-addons-test-utils": "15.3.2",
-  "react-dom": "15.3.2",
-  "console-polyfill": "~0.2.1",
-  "cz-conventional-changelog": "^2.1.0",
-  "es5-shim": "~4.1.10",
-  "bee-panel": "latest",
-  "bee-layout": "latest",
-  "bee-button": "latest"
+  "warning": "^4.0.3"
  },
  "peerDependencies": {
-  "react": ">= 15.3.0",
-  "react-dom": ">= 15.3.0",
-  "prop-types": ">= 15.6.0"
+  "react": "^15.3.0 || ^16.0",
+  "react-dom": "^15.3.0 || ^16.0",
+  "prop-types": "15.6.0"
+ },
+ "devDependencies": {
+  "bee-button": "latest",
+  "bee-clipboard": "^2.0.0",
+  "bee-drawer": "0.0.2",
+  "bee-form": "^2.0.11",
+  "bee-form-control": "^2.0.2",
+  "bee-label": "^1.0.0",
+  "bee-layout": "latest",
+  "bee-modal": "^2.0.8",
+  "bee-panel": "latest",
+  "bee-table": "^2.0.16",
+  "chai": "^3.5.0",
+  "console-polyfill": "~0.2.1",
+  "cz-conventional-changelog": "^2.1.0",
+  "enzyme": "^2.4.1",
+  "es5-shim": "~4.1.10",
+  "react": "~15.3.0",
+  "react-addons-test-utils": "15.3.2",
+  "react-dom": "~15.3.0"
  }
 }

@@ -1,4 +1,19 @@
-# TreeSelect
+# 树选择 TreeSelect
+
+树型选择控件。
+
+## 何时使用
+
+类似 Select 的选择控件，可选择的数据结构是一个树形结构时，可以使用 TreeSelect，例如公司层级、学科系统、分类目录等等。
+
+## 如何使用
+
+```
+import TreeSelect from 'bee-tree-select';
+import 'bee-tree-select/build/TreeSelect.css';
+```
+
+## 代码演示
 
 ## API
 
@@ -7,6 +22,7 @@
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | allowClear | 显示清除按钮 | boolean | false |
+| autoClearSearchValue | 当多选模式下值被选择，自动清空搜索框 | boolean | true |
 | className | 自定义输入框样式名 | string | - |
 | defaultValue | 指定默认选中的条目 | string/string\[] | - |
 | disabled | 是否禁用 | boolean | false |
@@ -35,6 +51,7 @@
 | onChange | 选中树节点时调用此函数 | function(value, label, extra) | - |
 | onSearch | 文本框值变化时回调 | function(value: string) | - |
 | onSelect | 被选中时调用 | function(value, node, extra) | - |
+| onTreeExpand | 展示节点时调用 | function(expandedKeys) | - |
 
 
 ### TreeNode props
@@ -49,3 +66,9 @@
 | key | 此项必须设置（其值在整个树范围内唯一） | string | - |
 | title | 树节点显示的内容 | string\|ReactNode | '---' |
 | value | 默认根据此属性值进行筛选（其值在整个树范围内唯一） | string | - |
+
+## 注意事项
+
+
+
+## 更新日志

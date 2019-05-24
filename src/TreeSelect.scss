@@ -1,9 +1,10 @@
 @import "../node_modules/tinper-bee-core/scss/minxin-variables";
 @import "../node_modules/tinper-bee-core/scss/minxin-mixins";
+@import "../node_modules/bee-select/src/Select.scss";
 
 
-$treePrefixCls: 'u-tree-select-tree';
-$selectPrefixCls: 'u-tree-select';
+$treePrefixCls: 'u-select-tree';
+$selectPrefixCls: 'u-select';
 //select样式
 @mixin effect() {
   animation-duration: .3s;
@@ -17,7 +18,9 @@ $selectPrefixCls: 'u-tree-select';
   position: relative;
   vertical-align: middle;
   color: #666;
-
+  &:focus {
+    outline: none;
+  }
   &-allow-clear {
     .#{$selectPrefixCls}-selection--single .#{$selectPrefixCls}-selection__rendered {
       padding-right: 40px;
@@ -36,55 +39,86 @@ $selectPrefixCls: 'u-tree-select';
   }
 
   // arrow
-  &-arrow {
-    height: 26px;
-    position: absolute;
-    top: 1px;
-    right: 1px;
-    width: 20px;
-    b {
-      border-color: #999999 transparent transparent transparent;
-      border-style: solid;
-      border-width: 5px 4px 0 4px;
-      height: 0;
-      width: 0;
-      margin-left: -4px;
-      margin-top: -2px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-    }
-  }
+  // &-arrow {
+  //   b {
+  //     border-color: #999999 transparent transparent transparent;
+  //     border-style: solid;
+  //     border-width: 5px 4px 0 4px;
+  //     height: 0;
+  //     width: 0;
+  //     margin-left: -4px;
+  //     margin-top: -2px;
+  //     position: absolute;
+  //     top: 50%;
+  //     left: 50%;
+  //   }
+  // }
 
   &-selection {
     outline: none;
-    user-select: none;
-    -webkit-user-select: none;
+    // user-select: none;
+    // -webkit-user-select: none;
 
-    box-sizing: border-box;
-    display: block;
+    // box-sizing: border-box;
+    // display: block;
 
-    background-color: #fff;
-    border-radius: 6px;
-    border: 1px solid #d9d9d9;
+    // background-color: #fff;
+    // border-radius: 6px;
+    // border: 1px solid #d9d9d9;
+    &:hover .u-select-selection__clear {
+      opacity: 1;
+    }
 
     &__clear {
-      font-weight: bold;
       position: absolute;
-
-      &:after {
-        content: '×'
+      top: 50%;
+      right: 8px;
+      z-index: 1;
+      display: inline-block;
+      margin-top: -6px;
+      color: rgba(0,0,0,0.25);
+      font-size: 12px;
+      font-style: normal;
+      line-height: 12px;
+      text-align: center;
+      text-transform: none;
+      background: #fff;
+      cursor: pointer;
+      opacity: 0;
+      -webkit-transition: color .3s ease,opacity .15s ease;
+      transition: color .3s ease,opacity .15s ease;
+      text-rendering: auto;
+      .uf {
+        padding: 0;
       }
+      &:hover {
+        color: rgba(0,0,0,0.45);
+      }
+    }
+
+    &__placeholder {
+      position: absolute;
+      top: 50%;
+      left: 5px;
+      right: 9px;
+      color: #909090;
+      line-height: 20px;
+      height: 20px;
+      max-width: 100%;
+      margin-top: -10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 
   &-enabled &-selection {
     &:hover {
-      border-color: #23c0fa;
-      box-shadow: 0 0 2px fadeout(#2db7f5, 20%);
+      border-color: #40a9ff;
+      box-shadow: 0 0 2px fadeout(#40a9ff, 20%);
     }
     &:active {
-      border-color: #2db7f5;
+      border-color: #40a9ff;
     }
   }
 
@@ -103,29 +137,41 @@ $selectPrefixCls: 'u-tree-select';
     .#{$selectPrefixCls}-selection-selected-value {
       display: block;
       overflow: hidden;
+      line-height: 30px;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
 
-    .#{$selectPrefixCls}-selection__clear {
-      top: 2px;
-      right: 20px;
-    }
+    // .#{$selectPrefixCls}-selection__clear {
+    //   top: 2px;
+    //   right: 20px;
+    // }
   }
 
   &-disabled {
-    color: #ccc;
+    color: #909090;
     cursor: not-allowed;
 
     .#{$selectPrefixCls}-selection--single,
     .#{$selectPrefixCls}-selection__choice__remove {
       cursor: not-allowed;
-      color: #ccc;
+      color: #909090;
 
       &:hover {
         cursor: not-allowed;
-        color: #ccc;
+        color: #909090;
       }
+    }
+  }
+
+  &-sm {
+    .u-select-selection--single .u-select-selection-selected-value {
+      line-height: 24px;
+    }
+  }
+  &-lg {
+    .u-select-selection--single .u-select-selection-selected-value {
+      line-height: 40px;
     }
   }
 
@@ -192,8 +238,10 @@ $selectPrefixCls: 'u-tree-select';
       overflow: hidden;
       text-overflow: ellipsis;
       padding-left: 8px;
-      padding-bottom: 2px;
+      // padding-bottom: 2px;
       padding-right: 10px;
+      line-height: 30px;
+      min-height: 30px;
     }
 
     > ul > li {
@@ -208,28 +256,28 @@ $selectPrefixCls: 'u-tree-select';
      }
   }
 
-  &-enabled {
-    .#{$selectPrefixCls}-selection__choice {
-      cursor: default;
-      &:hover {
-        .#{$selectPrefixCls}-selection__choice__remove {
-          opacity: 1;
-          transform: scale(1);
-        }
-        .#{$selectPrefixCls}-selection__choice__remove +
-        .#{$selectPrefixCls}-selection__choice__content {
-          margin-left: -8px;
-          margin-right: 8px;
-        }
-      }
-    }
-  }
+  // &-enabled {
+  //   .#{$selectPrefixCls}-selection__choice {
+  //     cursor: default;
+  //     &:hover {
+  //       .#{$selectPrefixCls}-selection__choice__remove {
+  //         opacity: 1;
+  //         transform: scale(1);
+  //       }
+  //       .#{$selectPrefixCls}-selection__choice__remove +
+  //       .#{$selectPrefixCls}-selection__choice__content {
+  //         margin-left: -8px;
+  //         margin-right: 8px;
+  //       }
+  //     }
+  //   }
+  // }
 
   & &-selection__choice {
     background-color: #f3f3f3;
-    border-radius: 4px;
+    border-radius: $border-radius-base;
     float: left;
-    padding: 0 15px;
+    padding: 0 20px 0 10px;
     margin-right: 4px;
     position: relative;
     overflow: hidden;
@@ -288,13 +336,14 @@ $selectPrefixCls: 'u-tree-select';
       font-weight: bold;
       padding: 0 0 0 8px;
       position: absolute;
-      opacity: 0;
-      transform: scale(0);
+      opacity: 1;
+      transform: scale(1);
       top: 0;
-      right: 2px;
+      right: 4px;
       transition: opacity .3s, transform .3s;
-      &:before {
-        content: '×'
+      .uf {
+        padding: 0;
+        font-size: 12px;
       }
 
       &:hover {
@@ -486,8 +535,8 @@ $selectPrefixCls: 'u-tree-select';
       padding: 4px;
       width: 100%;
       box-sizing: border-box;
-      border: 1px solid #d9d9d9;
-      border-radius: 4px;
+      border: 1px solid $border-color-base;
+      border-radius: $border-radius-base;
       outline: none;
     }
     &.#{$selectPrefixCls}-search--hide {
@@ -514,11 +563,12 @@ $selectPrefixCls: 'u-tree-select';
   padding: 5px;
   li {
     padding: 0;
-    margin: 0;
+    margin: 2px 0;
     list-style: none;
     white-space: nowrap;
     outline: 0;
     .#{$treePrefixCls}-title{
+      line-height: 18px;
       cursor: pointer;
     }
     a[draggable],
@@ -556,6 +606,21 @@ $selectPrefixCls: 'u-tree-select';
         font-weight: bold!important;
       }
     }
+    span.#{$treePrefixCls}-node-content-wrapper {
+      width: calc(100% - 48px);
+      display: inline-block;
+      padding: 3px 4px;
+      border-radius: 2px;
+      margin: 0;
+      cursor: pointer;
+      text-decoration: none;
+      vertical-align: middle;
+      color: $font-color-base;
+      transition: all 0.3s ease;
+      &:hover {
+        background: $hover-bg-color-base;
+      }
+    }
     ul {
       margin: 0;
       padding: 0 0 0 18px;
@@ -576,10 +641,10 @@ $selectPrefixCls: 'u-tree-select';
       &.#{$treePrefixCls}-switcher,
       &.#{$treePrefixCls}-checkbox,
       &.#{$treePrefixCls}-iconEle {
-        line-height: 16px;
+        line-height: 22px;
         margin-right: 2px;
-        width: 16px;
-        height: 16px;
+        width: 22px;
+        height: 22px;
         display: inline-block;
         vertical-align: middle;
         border: 0 none;
@@ -596,53 +661,151 @@ $selectPrefixCls: 'u-tree-select';
         background: url("data:image/gif;base64,R0lGODlhEAAQAKIGAMLY8YSx5HOm4Mjc88/g9Ofw+v///wAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQFCgAGACwAAAAAEAAQAAADMGi6RbUwGjKIXCAA016PgRBElAVlG/RdLOO0X9nK61W39qvqiwz5Ls/rRqrggsdkAgAh+QQFCgAGACwCAAAABwAFAAADD2hqELAmiFBIYY4MAutdCQAh+QQFCgAGACwGAAAABwAFAAADD1hU1kaDOKMYCGAGEeYFCQAh+QQFCgAGACwKAAIABQAHAAADEFhUZjSkKdZqBQG0IELDQAIAIfkEBQoABgAsCgAGAAUABwAAAxBoVlRKgyjmlAIBqCDCzUoCACH5BAUKAAYALAYACgAHAAUAAAMPaGpFtYYMAgJgLogA610JACH5BAUKAAYALAIACgAHAAUAAAMPCAHWFiI4o1ghZZJB5i0JACH5BAUKAAYALAAABgAFAAcAAAMQCAFmIaEp1motpDQySMNFAgA7") no-repeat scroll 0 0 transparent;
       }
       &.#{$treePrefixCls}-switcher {
+        padding-left: 5px;
         &-noop {
           cursor: auto;
           background: none;
         }
         &_open {
-          background-position: -93px -56px;
+          // background-position: -93px -56px;
+          background: #fff;
+          &:before {
+            font-family: 'uf';
+            content: "\e639";
+          }
         }
         &_close {
-          background-position: -75px -56px;
-        }
-      }
-      &.#{$treePrefixCls}-checkbox {
-        width: 13px;
-        height: 13px;
-        margin: 0 3px;
-        background-position: 0 0;
-        &-checked {
-          background-position: -14px 0;
-        }
-        &-indeterminate {
-          background-position: -14px -28px;
-        }
-        &-disabled {
-          background-position: 0 -56px;
-        }
-        &.#{$treePrefixCls}-checkbox-checked.#{$treePrefixCls}-checkbox-disabled {
-          background-position: -14px -56px;
-        }
-        &.#{$treePrefixCls}-checkbox-indeterminate.#{$treePrefixCls}-checkbox-disabled {
-          position: relative;
-          background: #ccc;
-          border-radius: 3px;
-          &::after {
-            content: ' ';
-            -webkit-transform: scale(1);
-            transform: scale(1);
-            position: absolute;
-            left: 3px;
-            top: 5px;
-            width: 5px;
-            height: 0;
-            border: 2px solid #fff;
-            border-top: 0;
-            border-left: 0;
+          // background-position: -75px -56px;
+          background: #fff;
+          &:before {
+            font-family: 'uf';
+            content: "\e61c";
           }
         }
       }
+      &.#{$treePrefixCls}-checkbox {
+        white-space: nowrap;
+        cursor: pointer;
+        outline: none;
+        display: inline-block;
+        line-height: 1;
+        position: relative;
+        vertical-align: middle;
+        height: 16px;
+        background: #fff;
+      }
+      &.#{$treePrefixCls}-checkbox-inner {
+          position: relative;
+          top: 0;
+          left: 0;
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          border: 1px solid $border-color-base;
+          border-radius: 3px;
+          background-color: #fff;
+          -webkit-transition: all .3s;
+          transition: all .3s;
+          box-sizing: border-box;
+      }
+      &.#{$treePrefixCls}-checkbox-disabled .#{$treePrefixCls}-checkbox-inner {
+          border-color: #dfe1e6;
+          background-color: #fff;
+      }
+      &.#{$treePrefixCls}-checkbox-indeterminate .#{$treePrefixCls}-checkbox-inner:after {
+          content: ' ';
+          -webkit-transform: scale(1);
+          -ms-transform: scale(1);
+          transform: scale(1);
+          position: absolute;
+          left: 2px;
+          top: 5px;
+          width: 8px;
+          height: 1px;
+      }
+      &.#{$treePrefixCls}-checkbox-disabled.#{$treePrefixCls}-checkbox-checked .#{$treePrefixCls}-checkbox-inner:after {
+          -webkit-animation-name: none;
+          animation-name: none;
+          border-color: #c1c7d0;
+      }
+      &.#{$treePrefixCls}-checkbox-disabled .#{$treePrefixCls}-checkbox-inner:after {
+          -webkit-animation-name: none;
+          animation-name: none;
+          border-color: #c1c7d0;
+      }
+      &.#{$treePrefixCls}-checkbox-checked .#{$treePrefixCls}-checkbox-inner:after {
+          -webkit-transform: rotate(45deg) scale(1);
+          -ms-transform: rotate(45deg) scale(1);
+          transform: rotate(45deg) scale(1);
+          position: absolute;
+          left: 4px;
+          top: 1px;
+          display: table;
+          width: 5px;
+          height: 8px;
+          border: 2px solid $tree-checkbox-color;
+          border-top: 0;
+          border-left: 0;
+          content: ' ';
+          -webkit-transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+          transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+      }
+      &.#{$treePrefixCls}-checkbox-inner:after {
+          -webkit-transform: rotate(45deg) scale(0);
+          -ms-transform: rotate(45deg) scale(0);
+          transform: rotate(45deg) scale(0);
+          position: absolute;
+          left: 4px;
+          top: 1px;
+          display: table;
+          width: 5px;
+          height: 8px;
+          border: 2px solid $tree-checkbox-color;
+          border-top: 0;
+          border-left: 0;
+          content: ' ';
+          -webkit-transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6);
+          transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6);
+      }
+      li span.#{$treePrefixCls}-checkbox {
+        margin: 2px 4px 0 0;
+      }
+      // &.#{$treePrefixCls}-checkbox {
+      //   width: 13px;
+      //   height: 13px;
+      //   margin: 0 3px;
+      //   background-position: 0 0;
+      //   &-checked {
+      //     background-position: -14px 0;
+      //   }
+      //   &-indeterminate {
+      //     background-position: -14px -28px;
+      //   }
+      //   &-disabled {
+      //     background-position: 0 -56px;
+      //   }
+      //   &.#{$treePrefixCls}-checkbox-checked.#{$treePrefixCls}-checkbox-disabled {
+      //     background-position: -14px -56px;
+      //   }
+      //   &.#{$treePrefixCls}-checkbox-indeterminate.#{$treePrefixCls}-checkbox-disabled {
+      //     position: relative;
+      //     background: #ccc;
+      //     border-radius: 3px;
+      //     &::after {
+      //       content: ' ';
+      //       -webkit-transform: scale(1);
+      //       transform: scale(1);
+      //       position: absolute;
+      //       left: 3px;
+      //       top: 5px;
+      //       width: 5px;
+      //       height: 0;
+      //       border: 2px solid #fff;
+      //       border-top: 0;
+      //       border-left: 0;
+      //     }
+      //   }
+      // }
     }
   }
   &-child-tree {
@@ -660,9 +823,12 @@ $selectPrefixCls: 'u-tree-select';
     }
   }
   &-node-selected {
-    background-color: #ffe6b0;
-    border: 1px #ffb951 solid;
-    opacity: 0.8;
+    display: inline-block;
+    width: calc(100% - 40px);
+    padding: 3px 4px;
+    background-color: $selected-bg-color-base;
+    // border: 1px #ffb951 solid;
+    // opacity: 0.8;
   }
   &-icon__open {
     margin-right: 2px;
