@@ -5,10 +5,10 @@
 *
 */
 import React, { Component } from 'react';
-import TreeSelect,{TreeNode} from '../../src';
+import TreeSelect from '../../src';
 
 const treeData = [{
-  title: 'Node1',
+  title: <span title="root 1">parent 1</span>,
   value: '0-0',
   key: '0-0',
   children: [{
