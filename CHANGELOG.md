@@ -1,3 +1,12 @@
+## [0.0.8](https://github.com/tinper-bee/bee-tree-select/compare/v0.0.7...v0.0.8) (2021-08-18)
+
+
+### Bug Fixes
+
+* 可以传真正的searchPlaceholder ([135c928](https://github.com/tinper-bee/bee-tree-select/commit/135c928312d8e4eba3c0390a6a447668a5382203))
+
+
+
 ## [0.0.7](https://github.com/tinper-bee/bee-tree-select/compare/v0.0.6...v0.0.7) (2020-04-24)
 
 
