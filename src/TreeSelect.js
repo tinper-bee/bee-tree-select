@@ -15,7 +15,8 @@ const defaultProps =   {
     transitionName: 'slide-up',
     choiceTransitionName: 'zoom',
     showSearch: false,
-    notFoundContent:"无匹配结果"
+    notFoundContent:"无匹配结果",
+    searchPlaceholder: '请搜索'
 };
 const propTypes = {
     getPopupContainer: PropTypes.func,
@@ -68,6 +69,7 @@ class TreeSelect extends Component {
             dropdownClassName,
             suffixIcon,
             getPopupContainer,
+            searchPlaceholder,
             ...restProps,
         } = this.props;
         const rest = omit(restProps, ['inputIcon', 'removeIcon', 'clearIcon', 'switcherIcon']);
@@ -120,7 +122,7 @@ class TreeSelect extends Component {
                 notFoundContent={notFoundContent}
                 treeCheckable={checkable}
                 ref={this.saveTreeSelect}
-                searchPlaceholder="请搜索"
+                searchPlaceholder={searchPlaceholder}
             />
         )
     }
